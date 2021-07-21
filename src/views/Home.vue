@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Posts</h1>
+    <h1>Welcome to the Blog App!</h1>
   </div>
 </template>
 
