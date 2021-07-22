@@ -5,6 +5,10 @@
       <h2>{{ post.title }}</h2>
       <p>{{ post.body }}</p>
       <img :src="post.image" alt="" />
+      <p></p>
+      <router-link :to="`/posts/${post.id}/edit`">
+        <button>Edit Post</button>
+      </router-link>
     </div>
   </div>
 </template>
