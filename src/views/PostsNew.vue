@@ -38,7 +38,7 @@ export default {
         console.log(response.data);
         this.$router.push("/");
       });
-    }
-  }
+    },
+  },
 };
 </script>
