@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg">
       <a class="navbar-brand col-1" href="/">Blog</a>
       <button
         class="navbar-toggler"
@@ -13,8 +13,8 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="col-3"></div>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="col-2"></div>
+      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav col-8">
           <li class="nav-item active">
             <a class="nav-link" href="/">
@@ -22,10 +22,10 @@
               <span class="sr-only"></span>
             </a>
           </li>
-          <li class="nav-item">
+          <li v-if="!isLoggedIn()" class="nav-item">
             <a class="nav-link" href="/signup">Signup</a>
           </li>
-          <li class="nav-item">
+          <li v-if="!isLoggedIn()" class="nav-item">
             <a class="nav-link" href="/login">Login</a>
           </li>
           <li class="nav-item">
@@ -37,7 +37,7 @@
           <li class="nav-item">
             <a class="nav-link" href="/about">About</a>
           </li>
-          <li class="nav-item">
+          <li v-if="isLoggedIn()" class="nav-item">
             <a class="nav-link" href="/logout">Logout</a>
           </li>
         </ul>
@@ -46,6 +46,23 @@
     <router-view />
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    isLoggedIn: function () {
+      if (localStorage.getItem("jwt")) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    getUserId: function () {
+      return localStorage.getItem("user_id");
+    },
+  },
+};
+</script>
 
 <style>
 body {
@@ -59,7 +76,16 @@ body {
 }
 
 .navbar-brand {
+  color: white;
   margin-right: 0rem !important;
 }
 
+.navbar {
+  background-color: lightcoral;
+}
+
+.navbar-nav {
+  color: white;
+  text-decoration-color: white;
+}
 </style>

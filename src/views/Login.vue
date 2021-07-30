@@ -33,8 +33,10 @@ export default {
       axios
         .post("/sessions", this.newSessionParams)
         .then((response) => {
+          console.log(response.data.user_id);
           axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.jwt;
           localStorage.setItem("jwt", response.data.jwt);
+          localStorage.setItem("user_id", response.data.user_id);
           this.$router.push("/");
         })
         .catch((error) => {

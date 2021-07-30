@@ -6,9 +6,11 @@
       <p>{{ post.body }}</p>
       <img :src="post.image" alt="" />
       <p></p>
-      <router-link :to="`/posts/${post.id}/edit`">
-        <button>Edit Post</button>
-      </router-link>
+      <li v-if="$parent.getUserId() == post.user_id">
+        <router-link :to="`/posts/${post.id}/edit`">
+          <button>Edit Post</button>
+        </router-link>
+      </li>
     </div>
   </div>
 </template>

@@ -19,11 +19,12 @@
       </div>
       <input type="submit" value="Submit" />
     </form>
+    <button v-on:click="destroyPost">Delete Post</button>
   </div>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   data: function () {
@@ -43,8 +44,14 @@ export default {
       axios.patch("/posts/" + this.$route.params.id, this.editPostParams).then((response) => {
         console.log(response.data);
         this.$router.push("/posts/" + response.data.id);
+      });
+    },
+    destroyPost: function () {
+      axios.delete("/posts/" + this.$route.params.id).then((response) => {
+        console.log(response.data);
+        this.$router.push("/posts");
       })
     }
-  }
-}
+  },
+};
 </script>
